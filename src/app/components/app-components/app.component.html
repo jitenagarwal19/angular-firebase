@@ -1,0 +1,9 @@
+<h1>
+  {{title}}
+</h1>
+<h3>List from Firebase</h3>
+<ul>
+  <li *ngFor="let item of items | async">
+    <em>{{item.$key}}</em>   {{item.$value}}
+  </li>
+</ul>
