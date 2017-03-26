@@ -1,7 +1,7 @@
 import {Image} from '../../interfaces/Image'
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { FirebaseObjectObservable, AngularFire, FirebaseApp} from 'angularfire2';
-
+import {ImageManagementService} from '../../services/image-management.service'
 @Component({
     selector: 'firebase-image',
     templateUrl: 'image.component.html',
@@ -14,24 +14,19 @@ export class ImageComponent implements OnInit {
     imageObj: FirebaseObjectObservable<Image>;
     imageURL:string;
 
-    constructor(private af: AngularFire, @Inject(FirebaseApp) firebaseApp:any) { 
+    constructor(private af: AngularFire, @Inject(FirebaseApp) firebaseApp:any, public imageManagementService:ImageManagementService) { 
         this.firebaseApp = firebaseApp;
     }
     ngOnInit() {    
+        let that = this;
         if (this.imageKey) {
-            let that = this;
-            let storage = this.firebaseApp.storage();
-            this.imageObj = this.af.database.object(this.imagePath + this.imageKey);
-            let temp = this.imageObj;
-            this.imageObj.subscribe(snapshot=> {
-                console.log("snapshot path " + snapshot.path);
-                let pathReference = storage.ref(snapshot.path);
-                pathReference.getDownloadURL().then(url=> {
-                    console.log("url fetched " + temp);
-                    this.imageURL = url;
-                });
-            });
+
+            var callback = function(url) {
+                that.imageURL = url;
+            }
+            this.imageManagementService.getImagePath(this.imageKey, callback);
         }
+        
     }
     ngOnChanges() {
                 

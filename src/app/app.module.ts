@@ -10,6 +10,7 @@ import {ItemList} from './components/item-list/item-list.component';
 import {TestComponent} from './components/test-component/test-component.component';
 import {ImageUpload} from './components/image-upload/image-upload.component';
 import {ImageComponent} from './components/image-component/image.component';
+import {ImageManagementService} from './services/image-management.service';
 
 import { AppComponent } from './components/app-components/app.component';
 
@@ -36,7 +37,7 @@ export const firebaseConfig =  {
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule
   ],
-  providers: [FirebaseItemService],
+  providers: [FirebaseItemService, ImageManagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
