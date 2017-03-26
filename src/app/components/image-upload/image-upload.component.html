@@ -8,9 +8,11 @@
 <div style="overflow: hidden">
     <div *ngFor="let img of imageList" style="position:relative;width:100px;height:100px;float:left;display:flex;justify-content:center;align-items:center;">
         {{img.filename}}
-        <img [src]="img.downloadURL " style="max-width:100px;max-height:100px;">
-        <button (click)="delete(img)" style="position:absolute;top:2px;right:2px;">[x]</button>
+        <!--<img [src]="img.downloadURL " style="max-width:100px;max-height:100px;">
+        <button (click)="delete(img)" style="position:absolute;top:2px;right:2px;">[x]</button>-->
+        <firebase-image [imageKey]='img.$key'></firebase-image>
     </div>
 </div>
+
 
 <button (click) = "downloadImages()">Download All Images</button>

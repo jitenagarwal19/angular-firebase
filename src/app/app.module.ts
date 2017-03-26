@@ -9,7 +9,7 @@ import {FirebaseItemService} from './services/firebase-item.service';
 import {ItemList} from './components/item-list/item-list.component';
 import {TestComponent} from './components/test-component/test-component.component';
 import {ImageUpload} from './components/image-upload/image-upload.component';
-
+import {ImageComponent} from './components/image-component/image.component';
 
 import { AppComponent } from './components/app-components/app.component';
 
@@ -27,7 +27,8 @@ export const firebaseConfig =  {
     ItemComponent,
     FirebaseFormComponent,
     ItemList,
-    ImageUpload
+    ImageUpload,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

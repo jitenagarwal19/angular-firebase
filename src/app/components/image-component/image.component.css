@@ -1,0 +1,12 @@
+.header {
+    font-weight: bold;
+}
+div {
+    border:1px solid red;
+}
+
+img {
+    height:100px;
+    width:100px;
+    margin:5px;
+}
