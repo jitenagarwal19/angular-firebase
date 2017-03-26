@@ -1,0 +1,8 @@
+<div style="border:1px solid orange">
+    length of the list <span *ngIf="items">{{items.length}}</span>
+    <div *ngFor="let item of items">
+        <firebase-item [item] = "item"></firebase-item>
+    </div>
+    
+    
+</div>

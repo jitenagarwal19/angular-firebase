@@ -1,0 +1,11 @@
+<form>
+    <label for="name_field">
+        Name:
+        <input [(ngModel)] = "name" type="text" name = "name" id="name_field">
+    </label>
+    <label for="address_field">
+        Address:
+        <input [(ngModel)] = "address" name = "address" type="text" id="address_field">
+    </label>
+    <button (click) = "addFields()">Add Fields to Firebase</button>
+</form>
