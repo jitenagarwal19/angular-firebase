@@ -1,5 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { Component, OnInit} from '@angular/core';
 import {FirebaseItemService} from '../../services/firebase-item.service';
 
 @Component({
@@ -7,21 +6,21 @@ import {FirebaseItemService} from '../../services/firebase-item.service';
     templateUrl: './firebase-form.component.html'  
 })
 export class FirebaseFormComponent implements OnInit {
-    items:FirebaseListObservable<any>;
-    address:String;
-    name:String;
+    address:string;
+    name:string;
+    folderName:'form-item';
+    image:any;
 
-    constructor(private af:AngularFire, private firebaseItemService:FirebaseItemService) {
-        this.items = af.database.list('/items');
+    constructor(private firebaseItemService:FirebaseItemService) {
+        
      }
-     addIndividualObject() {
-         if (this.name && this.address) {
-             this.af.database.object('/test/someobject/').set({name:this.name, address:this.address});
-         }
-     }
+    
      addFields() {
-         if (this.name && this.address) {
-             const promise = this.firebaseItemService.pushItemInList({name:this.name, address:this.address});
+         if (!this.image) {
+             alert("Please upload Image");
+         }
+         if (this.name && this.address && this.image) {
+             const promise = this.firebaseItemService.pushItemInList({name:this.name, address:this.address, image:this.image.key});
              if (promise) {
                  promise
                  .catch(function(error) {
@@ -36,6 +35,10 @@ export class FirebaseFormComponent implements OnInit {
      }
     ngOnInit() { 
             
+    }
+    imageUploaded(image:any) {
+        console.log("Image uploaded successfully");
+        this.image = image;
     }
 
 }

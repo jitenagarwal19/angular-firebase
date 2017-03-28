@@ -26,28 +26,7 @@ export class ImageUpload {
     ngOnChanges() {
 
     }
-    // uploadImage() {
-    //     let storage = this.firebaseApp.storage().ref();
-    //     let generatedKey: string = this.utilityService.generateRandomString();
-    //     let that = this;
-    //     this.isUploading = true;
-    //     for (let selectedFile of [(<HTMLInputElement>document.getElementById('file-upload')).files[0]]) {
-    //         if (!this.utilityService.isFileNameImage(selectedFile.name)) {
-    //             this.fileUploadStatus = "Select appropriate Format of Image File";
-    //             this.isUploading = false;
-    //             return;
-    //         }
-    //         console.log("Name of selectedFile " + selectedFile.name);
-    //         let path = `/images/${that.folder}/${selectedFile.name}`;
-    //         let iRef = storage.child(path);
-    //         iRef.put(selectedFile).then((snapshot) => {
-    //             console.log('file uploading successful');
-    //             let imageObject: any = { path: path, fileName: selectedFile.name, key: generatedKey };
-    //             that.af.database.object(`/images/${generatedKey}`).set(imageObject);
-    //             this.imageUploadComplete(imageObject);
-    //         })
-    //     }
-    // }
+
     uploadImage() {
         var that = this;
         for (let selectedFile of [(<HTMLInputElement>document.getElementById('file-upload')).files[0]]) {
@@ -57,7 +36,7 @@ export class ImageUpload {
                 return;
             }
             this.imageManagementService.uploadImage(selectedFile, this.folder, function (imageObj) {
-                that.af.database.object(`/images/${imageObj.key}`).set(imageObj);
+                that.af.database.object(`/images/${that.imageManagementService.getFolderName(that.folder)}/${imageObj.key}`).set(imageObj);
                 that.imageUploadComplete(imageObj);
             });
 

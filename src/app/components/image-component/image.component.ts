@@ -9,9 +9,8 @@ import {ImageManagementService} from '../../services/image-management.service'
 })
 export class ImageComponent implements OnInit {
     @Input() imageKey:string;
+    @Input() folderName:string;
     firebaseApp:any;
-    imagePath:string = '/shitImages/images/';
-    imageObj: FirebaseObjectObservable<Image>;
     imageURL:string;
 
     constructor(private af: AngularFire, @Inject(FirebaseApp) firebaseApp:any, public imageManagementService:ImageManagementService) { 
@@ -23,8 +22,13 @@ export class ImageComponent implements OnInit {
             var callback = function(url) {
                 that.imageURL = url;
             }
-            this.imageManagementService.getImagePath(this.imageKey, callback);
+            this.imageManagementService.getImagePath(this.imageKey, callback, this.folderName);
+        } else {
+            this.loadPlaceHolderImage();
         }
+    }
+    loadPlaceHolderImage() {
+        this.imageURL = 'http://i.imgur.com/3Wykn1q.gif';
     }
     deleteImage() {
         function callback(data) {

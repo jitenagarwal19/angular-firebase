@@ -15,8 +15,7 @@ export class AppComponent {
     this.item = af.database.object('/items');  
   }
 
-  imageUploaded(image:any) {
-    
+  imageUploaded(image:any) {    
     console.log("in the caller ", JSON.stringify(image));
   }
   
