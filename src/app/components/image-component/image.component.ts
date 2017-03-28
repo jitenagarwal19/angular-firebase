@@ -20,13 +20,17 @@ export class ImageComponent implements OnInit {
     ngOnInit() {    
         let that = this;
         if (this.imageKey) {
-
             var callback = function(url) {
                 that.imageURL = url;
             }
             this.imageManagementService.getImagePath(this.imageKey, callback);
         }
-        
+    }
+    deleteImage() {
+        function callback(data) {
+            console.log('Image Got Deleted');
+        }
+        this.imageManagementService.deleteImage(this.imageKey, callback)
     }
     ngOnChanges() {
                 

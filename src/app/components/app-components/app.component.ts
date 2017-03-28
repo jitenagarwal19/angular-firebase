@@ -9,9 +9,16 @@ import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'ang
 })
 export class AppComponent {
   item : FirebaseObjectObservable<any[]>;
-  folderName:'testFolder';
+  folderName:string = 'testFolder';
+  
   constructor(af:AngularFire) {
     this.item = af.database.object('/items');  
   }
-  title = 'app Wow!';
+
+  imageUploaded(image:any) {
+    
+    console.log("in the caller ", JSON.stringify(image));
+  }
+  
 }
+

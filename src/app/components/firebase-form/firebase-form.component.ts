@@ -11,8 +11,13 @@ export class FirebaseFormComponent implements OnInit {
     address:String;
     name:String;
 
-    constructor(af:AngularFire, private firebaseItemService:FirebaseItemService) {
+    constructor(private af:AngularFire, private firebaseItemService:FirebaseItemService) {
         this.items = af.database.list('/items');
+     }
+     addIndividualObject() {
+         if (this.name && this.address) {
+             this.af.database.object('/test/someobject/').set({name:this.name, address:this.address});
+         }
      }
      addFields() {
          if (this.name && this.address) {

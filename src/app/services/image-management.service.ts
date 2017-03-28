@@ -19,5 +19,15 @@ export class ImageManagementService {
          })
 
      }
+     deleteImage(imageKey:string, successCallback:Function, imageRef?:string) {
+         imageRef = imageRef || '/shitImages/images/';
+         let that = this;
+         let storage = this.firebaseApp.storage();
+         this.af.database.object(imageRef + imageKey).subscribe(snapshot=> {
+             storage.ref(snapshot.path).delete().then(successCallback)
+             .catch(error=>{console.log("error deleting file")});
+         })
+         this.af.database.object(imageRef+imageKey).remove();
+     }
 
 }

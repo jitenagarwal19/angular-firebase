@@ -1,3 +1,5 @@
-<div *ngIf="this.imageURL">
+<div *ngIf="this.imageURL" class="image-container">
+    <button (click)="deleteImage()">[x]</button>
     <img [src]="this.imageURL" alt="someShit">
+    
 </div>

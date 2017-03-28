@@ -1,0 +1,7 @@
+<div>Upload Image</div>
+<form ngNoForm>
+    <input type="file" id = "file-upload" name="file">
+    <button (click)="uploadImage()" type="button" [disabled]="isUploading"> Upload</button>
+    <div>{{fileUploadStatus}}</div>
+</form>
+

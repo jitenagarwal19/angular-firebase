@@ -11,6 +11,7 @@ import {TestComponent} from './components/test-component/test-component.componen
 import {ImageUpload} from './components/image-upload/image-upload.component';
 import {ImageComponent} from './components/image-component/image.component';
 import {ImageManagementService} from './services/image-management.service';
+import {UtilityService} from './services/utilities.service';
 
 import { AppComponent } from './components/app-components/app.component';
 
@@ -37,7 +38,7 @@ export const firebaseConfig =  {
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule
   ],
-  providers: [FirebaseItemService, ImageManagementService],
+  providers: [FirebaseItemService, ImageManagementService, UtilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
