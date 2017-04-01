@@ -1,0 +1,20 @@
+<form>
+    <label for="name_field">
+        Firm Name:
+        <input [(ngModel)] = "name" type="text" name = "name" id="name_field">
+    </label>
+    <label for="address_field">
+        Address:
+        <input [(ngModel)] = "address" name = "address" type="text" id="address_field">
+    </label>
+    <image-upload [folder] = "folderName" (imageUploaded) = imageUploaded($event)></image-upload>
+    <button (click) = "addFields()">Add Fields to Firebase</button>
+</form>
+<!--<form >
+    <label for="product">
+        <input type="text" [(ngModel)]  = "product" id="product" >
+        <image-upload [folder] = "folderName" (imageUploaded) = imageUploaded($event)></image-upload>
+    </label>
+    <button (click) = "addProduct()">add Product</button>
+</form>-->
+

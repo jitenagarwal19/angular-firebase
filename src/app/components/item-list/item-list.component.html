@@ -1,0 +1,9 @@
+<h2> length of the list <span *ngIf="items">{{items.length}}</span></h2>
+<md-input-container>
+    <input mdInput type="text" placeholder="Search Traders" [(ngModel)] = 'searchField' (ngModelChange) = 'searchFieldChange()'>
+</md-input-container>
+<div style="margin:10px" class="list-container" >
+    <div *ngFor="let item of items" class="item" >
+        <firebase-item [item]="item"></firebase-item>
+    </div>
+</div>

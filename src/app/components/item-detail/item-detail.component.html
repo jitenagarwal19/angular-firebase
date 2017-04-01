@@ -1,0 +1,8 @@
+<div *ngIf="(item )">
+    <h1>Hey There {{(item ).name}}</h1>
+    <h2>You live at {{(item ).address}}</h2>
+    <div>Image Key - {{(item ).image }}</div>
+    <firebase-image [imageKey]="(item ).image" [folderName]='folderName'></firebase-image>
+</div>
+
+<div *ngIf="!(item )">Something is not correct Here</div>
