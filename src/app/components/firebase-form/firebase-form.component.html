@@ -10,6 +10,12 @@
     <image-upload [folder] = "folderName" (imageUploaded) = imageUploaded($event)></image-upload>
     <button (click) = "addFields()">Add Fields to Firebase</button>
 </form>
+<br>
+<br>
+<div style = 'border:1px solid red' >
+    <h3>Product Addition</h3>
+    <product-addition></product-addition>
+</div>
 <!--<form >
     <label for="product">
         <input type="text" [(ngModel)]  = "product" id="product" >
