@@ -7,7 +7,6 @@ import { ItemComponent } from './components/item/item.component';
 import { FirebaseFormComponent } from './components/firebase-form/firebase-form.component';
 import { FirebaseItemService } from './services/firebase-item.service';
 import { ItemList } from './components/item-list/item-list.component';
-import { TestComponent } from './components/test-component/test-component.component';
 import { ImageUpload } from './components/image-upload/image-upload.component';
 import { ImageComponent } from './components/image-component/image.component';
 import { ImageManagementService } from './services/image-management.service';
@@ -19,10 +18,6 @@ import {MaterialModule} from '@angular/material';
 import { AppComponent } from './components/app-components/app.component';
 
 const appRoutes: Routes = [
-  {
-    'path': 'test-url/:name',
-    component: TestComponent
-  },
   {
     path:'list',
     component:ItemList
@@ -66,7 +61,6 @@ export const firebaseConfig = {
     ItemList,
     ImageUpload,
     ImageComponent,
-    TestComponent,
     PageNotFoundComponent,
     ItemDetailsComponent
   ],
