@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { Component } from '@angular/core';  
 
 
 @Component({
@@ -8,16 +7,11 @@ import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'ang
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  item : FirebaseObjectObservable<any[]>;
-  folderName:string = 'testFolder';
   
-  constructor(af:AngularFire) {
-    this.item = af.database.object('/items');  
+  constructor() {
+    
   }
 
-  imageUploaded(image:any) {    
-    console.log("in the caller ", JSON.stringify(image));
-  }
   
 }
 

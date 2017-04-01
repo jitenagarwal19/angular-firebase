@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
-@Injectable()
 
+@Injectable()
 export class FirebaseItemService {
     private items:FirebaseListObservable<any>;
+    
 
     constructor(private af:AngularFire) { }
     private initList() {
@@ -21,6 +22,18 @@ export class FirebaseItemService {
         if (!item)
             return;
         return this.items.push(item);
+    }
+    getItemAsObservable(itemId) {
+        return this.af.database.object(`/items/${itemId}`); 
+    }
+    getItemAsObject(itemId:string,successCallback:(n:any)=>void, failureCallback:(errorMessage:string)=>void) {
+        this.af.database.object(`/items/${itemId}`).subscribe(snapshot=>{
+            if (snapshot.$exists()) {
+                successCallback(snapshot);
+            } else {
+                failureCallback("Object does not exist");
+            }
+        });
     }
 
 }

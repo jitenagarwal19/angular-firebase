@@ -40,5 +40,11 @@ export class FirebaseFormComponent implements OnInit {
         console.log("Image uploaded successfully");
         this.image = image;
     }
+    productImageUploaded(image:any) {
+
+    }
+    addProduct() {
+        
+    }
 
 }

@@ -1,15 +1,6 @@
-<h1>
-  {{item.name}}
-</h1>
-<div style="border:1x solid green">
-  <firebase-form></firebase-form>
-</div>
-
-<br/>
-<br/>
-<br/>
-
-<h1>Item List</h1>
-<item-list></item-list>
-
-<!--<image-upload [folder] = "folderName" (imageUploaded)= "imageUploaded($event)"> </image-upload>-->
+<a routerLink="/list">List</a>
+<a routerLink="/form">Form</a>
+<br>
+<br>
+<br>
+<router-outlet></router-outlet>

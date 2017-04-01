@@ -1,8 +1,13 @@
 
-<div style="border:1px solid red" *ngIf = "item">
-    <div>Name - {{(item).name}}</div>
-    <div>Address - {{(item).address }}</div>
-    <div>Image Key - {{(item).image }}</div>
+<md-card >
     <firebase-image [imageKey] = "item.image" [folderName] = 'folderName'></firebase-image>
-
-</div>
+    <md-card-content>
+        <h2>{{item.name}}</h2>
+        <h3>{{item.address}}</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+    </md-card-content>
+    <div class="md-actions" layouts="row" layout-align="end center">
+        <button md-button>Detials</button>
+        <button md-button>Contact</button>
+    </div>
+</md-card>

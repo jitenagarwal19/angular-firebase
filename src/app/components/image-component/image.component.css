@@ -1,9 +1,5 @@
 .image-container {
-    border:1px solid red;
     position:relative;
-}
-button {
-    position: absolute;
 }
 img {
     min-height:50px;
