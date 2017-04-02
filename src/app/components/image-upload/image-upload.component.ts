@@ -13,10 +13,8 @@ import { FormComponentModel } from '../../interfaces/form-component-model.interf
 export class ImageUpload {
     @Input() folder: string;
     @Output() imageUploaded = new EventEmitter();
-
-
-    static componentCounter: number = 0;
-    private componentId: number;
+    id:string;
+    
     isUploading: boolean = false;
     firebaseApp: any;
     fileUploadStatus: string = "Please choose a file";
@@ -24,11 +22,11 @@ export class ImageUpload {
 
     constructor(public af: AngularFire, @Inject(FirebaseApp) firebaseApp: any, private utilityService: UtilityService, private imageManagementService: ImageManagementService) {
         this.firebaseApp = firebaseApp;
+        this.id = 'image-upload-input-'+utilityService.generateRandomString(); 
     }
 
     ngOnInit() {
-        ImageUpload.componentCounter++;
-        this.componentId = ImageUpload.componentCounter - 1;
+    
     }
     ngOnChanges() {
         this.onComponentUpdate();
@@ -48,7 +46,7 @@ export class ImageUpload {
 
     uploadImage() {
         var that = this;
-        for (let selectedFile of [(<HTMLInputElement>document.getElementsByClassName('file-upload')[this.componentId]).files[0]]) {
+        for (let selectedFile of [(<HTMLInputElement>document.getElementById(this.id)).files[0]]) {
             if (selectedFile) {
                 if (!this.utilityService.isFileNameImage(selectedFile.name)) {
                     this.fileUploadStatus = "Select appropriate Format of Image File";
@@ -70,8 +68,6 @@ export class ImageUpload {
 
     }
     ngOnDestroy() {
-        ImageUpload.componentCounter--;
-        ImageUpload.componentCounter = ImageUpload.componentCounter < 0 ? 0 : ImageUpload.componentCounter;
     }
 
 
