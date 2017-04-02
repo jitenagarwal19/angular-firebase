@@ -1,27 +1,40 @@
+
+//3rd party
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
-import { ItemComponent } from './components/item/item.component';
-import { FirebaseFormComponent } from './components/firebase-form/firebase-form.component';
+import {MaterialModule} from '@angular/material';
+import { RouterModule, Routes } from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//services
+import { UtilityService } from './services/utilities.service';
 import { FirebaseItemService } from './services/firebase-item.service';
+import { ImageManagementService } from './services/image-management.service';
+import {FirebaseProductService} from './services/firebase-product.service';
+
+//components
+import { AppComponent } from './components/app-components/app.component';
+import { FirebaseFormComponent } from './components/firebase-form/firebase-form.component';
+import { ItemComponent } from './components/item/item.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.compoment'
 import { ItemList } from './components/item-list/item-list.component';
-import { TestComponent } from './components/test-component/test-component.component';
 import { ImageUpload } from './components/image-upload/image-upload.component';
 import { ImageComponent } from './components/image-component/image.component';
-import { ImageManagementService } from './services/image-management.service';
-import { UtilityService } from './services/utilities.service';
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.compoment'
-import { RouterModule, Routes } from "@angular/router";
 import {ItemDetailsComponent} from './components/item-detail/item-detail.component';
-import {MaterialModule} from '@angular/material';
-import { AppComponent } from './components/app-components/app.component';
+import {ProductAdditionComponent} from './components/product-addition/product-addition.component';
+import {ProductSelectionComponent} from './components/product-selection/product-selection.component';
+
+
+
+
 
 const appRoutes: Routes = [
   {
-    'path': 'test-url/:name',
-    component: TestComponent
+    path:'form',
+    component:FirebaseFormComponent
   },
   {
     path:'list',
@@ -29,18 +42,13 @@ const appRoutes: Routes = [
   },
   {
     path:'',
-    redirectTo:'/list',
+    redirectTo:'/form',
     pathMatch:'full'
     
   },
    {
     path:'details/:itemId',
     component:ItemDetailsComponent
-
-  },
-  {
-    path:'form',
-    component:FirebaseFormComponent
   },
   
   {
@@ -66,9 +74,10 @@ export const firebaseConfig = {
     ItemList,
     ImageUpload,
     ImageComponent,
-    TestComponent,
     PageNotFoundComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    ProductAdditionComponent,
+    ProductSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -76,9 +85,10 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
-  providers: [FirebaseItemService, ImageManagementService, UtilityService],
+  providers: [FirebaseItemService, ImageManagementService, UtilityService, FirebaseProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

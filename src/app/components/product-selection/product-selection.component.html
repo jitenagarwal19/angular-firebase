@@ -1,0 +1,12 @@
+<md-select [(ngModel)] = 'selectedValue' (change) = 'onProductSelect(selectedValue)'>
+    <md-option *ngFor="let product of products" [value] = 'product'>
+        {{product.productName}}
+    </md-option>
+</md-select>
+
+<div>
+    <h4>Selected Value</h4>
+    <ul>
+    <li *ngFor="let product of selectedProducts">{{product.productName}} <button (click) = 'deleteProduct(product)'>[x]</button></li>
+    </ul>
+</div>

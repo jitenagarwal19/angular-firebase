@@ -1,0 +1,5 @@
+<div>
+    <input type="text" placeholder="Enter Product Name" [(ngModel)]="productName">
+    <image-upload (imageUploaded) = imageUploaded($event)></image-upload>
+    <button (click) = 'addProduct()'>Add Product</button>
+</div>

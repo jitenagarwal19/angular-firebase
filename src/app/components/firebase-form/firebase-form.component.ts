@@ -1,50 +1,46 @@
 import { Component, OnInit} from '@angular/core';
 import {FirebaseItemService} from '../../services/firebase-item.service';
-
+import {FormComponentModel} from './../../interfaces/form-component-model.interface';
 @Component({
     selector: 'firebase-form',
-    templateUrl: './firebase-form.component.html'  
+    templateUrl: './firebase-form.component.html' ,
+    styleUrls:['./firebase-form.component.css']
+
 })
 export class FirebaseFormComponent implements OnInit {
-    address:string;
-    name:string;
-    folderName:'form-item';
-    image:any;
+    private componentModels:any = {};
+    invalidMessages:string[] = [];
 
     constructor(private firebaseItemService:FirebaseItemService) {
         
      }
     
      addFields() {
-         if (!this.image) {
-             alert("Please upload Image");
-         }
-         if (this.name && this.address && this.image) {
-             const promise = this.firebaseItemService.pushItemInList({name:this.name, address:this.address, image:this.image.key});
-             if (promise) {
-                 promise
-                 .catch(function(error) {
-                     console.log('Something got fucked ' + error.message);
-                 })
-             }
-             this.name = "";
-             this.address = "";
-         } else {
-             alert('Hey Valid Values Please');
+         if (this.isValid()) {
+             console.log('yes everything is correct');
          }
      }
     ngOnInit() { 
             
     }
-    imageUploaded(image:any) {
-        console.log("Image uploaded successfully");
-        this.image = image;
+   
+    private isValid():boolean {
+        let result:boolean = true;
+        this.invalidMessages = [];
+        for (let key in this.componentModels) {
+            if (!this.componentModels[key].isValid) {
+                result = false;
+                console.log('pushing in invalid messages ' + this.componentModels[key].invalidMessage)
+                this.invalidMessages.push(this.componentModels[key].invalidMessage);
+            }
+        }
+        return result;
     }
-    productImageUploaded(image:any) {
-
-    }
-    addProduct() {
+    private componentFieldUpdate(componentModel:FormComponentModel) {
         
+        if (componentModel) {
+            this.componentModels[componentModel.item] = componentModel; 
+        }
     }
-
+  
 }

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {UtilityService} from './utilities.service'
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularFire2';
-@Injectable()
-export class ProductService {
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+@Injectable()   
+export class FirebaseProductService {
     
     constructor(private af:AngularFire, private utilities:UtilityService) { }
 
     addProductInList(product:any) {
         let key = this.utilities.generateRandomString();
         product.key = key;
-        this.af.database.object(`/products/${key}`).set(product);
+        return this.af.database.object(`/products/${key}`).set(product);
     }
     getProductList(successCallback:(productList:any[])=>void) {
         this.af.database.list('/products/').subscribe((snapshot)=> {
