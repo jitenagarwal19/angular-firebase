@@ -7,12 +7,13 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import {MaterialModule} from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //services
 import { UtilityService } from './services/utilities.service';
 import { FirebaseItemService } from './services/firebase-item.service';
 import { ImageManagementService } from './services/image-management.service';
-
+import {FirebaseProductService} from './services/firebase-product.service';
 
 //components
 import { AppComponent } from './components/app-components/app.component';
@@ -24,7 +25,7 @@ import { ImageUpload } from './components/image-upload/image-upload.component';
 import { ImageComponent } from './components/image-component/image.component';
 import {ItemDetailsComponent} from './components/item-detail/item-detail.component';
 import {ProductAdditionComponent} from './components/product-addition/product-addition.component';
-import {FirebaseProductService} from './services/firebase-product.service';
+import {ProductSelectionComponent} from './components/product-selection/product-selection.component';
 
 
 
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
   },
   {
     path:'',
-    redirectTo:'/list',
+    redirectTo:'/form',
     pathMatch:'full'
     
   },
@@ -75,7 +76,8 @@ export const firebaseConfig = {
     ImageComponent,
     PageNotFoundComponent,
     ItemDetailsComponent,
-    ProductAdditionComponent
+    ProductAdditionComponent,
+    ProductSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
   providers: [FirebaseItemService, ImageManagementService, UtilityService, FirebaseProductService],
   bootstrap: [AppComponent]

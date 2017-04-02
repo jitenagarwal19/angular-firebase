@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {UtilityService} from './utilities.service'
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
-@Injectable()
+@Injectable()   
 export class FirebaseProductService {
     
     constructor(private af:AngularFire, private utilities:UtilityService) { }
