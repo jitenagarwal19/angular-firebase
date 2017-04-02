@@ -1,7 +1,14 @@
 <div>Upload Image</div>
 <form ngNoForm>
-    <input [id] = 'id' type="file" class = "file-upload" name="file" multiple>
+    <input [id]='id' (change)='onFileInputChange($event)' type="file" class="file-upload" name="file" allow='img/*' multiple>
     <button (click)="uploadImage()" type="button" [disabled]="isUploading"> Upload</button>
     <div>{{fileUploadStatus}}</div>
+    <md-card class='preview-image-container' *ngIf="addedImages && addedImages.length">
+        <div *ngFor='let fileItem of addedImages; let i = index' class='preview-image'>
+            <img [src]='fileItem.src' [alt]="fileItem.name">
+            <span>{{i}}   {{fileItem.name}}</span>
+            <button (click)='removeImage(i)'> x </button>
+            <span class='image-status-text'> {{fileItem.status}}</span>
+        </div>
+    </md-card>
 </form>
-
