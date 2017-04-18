@@ -18,6 +18,7 @@ export class FirebaseFormComponent implements OnInit {
      addFields() {
          if (this.isValid()) {
              console.log('yes everything is correct');
+             this.firebaseItemService.pushItemInList(this.componentModels);
          }
      }
     ngOnInit() { 
@@ -41,6 +42,7 @@ export class FirebaseFormComponent implements OnInit {
         if (componentModel) {
             this.componentModels[componentModel.item] = componentModel; 
         }
+        this.isValid();
     }
   
 }

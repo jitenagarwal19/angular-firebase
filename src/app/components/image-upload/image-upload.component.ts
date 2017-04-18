@@ -13,7 +13,7 @@ import { FormComponentModel } from '../../interfaces/form-component-model.interf
 export class ImageUpload {
     @Input() folder: string;
     @Output() imageUploaded = new EventEmitter();
-
+    
 
     static componentCounter: number = 0;
     private componentId: number;
