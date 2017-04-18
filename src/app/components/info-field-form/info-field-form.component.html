@@ -1,0 +1,99 @@
+<!--//name of the firm
+//url-unique-link
+//owner with photo
+//description
+//contact info
+    1.Office Number
+    2. addresss
+//brands-->
+
+<form class="form">
+
+    <table class="full-width" cellspacing="0">
+        <tr>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput placeholder="Firm Name" [(ngModel)]='information.firmName' name='firm_name'>
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput placeholder="Firm Nmenoic that will be used as URL" [(ngModel)]='information.unique_url' name='unique_url'>
+                </md-input-container>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <h3>Description Paragraphs</h3>
+
+        <div class="full-width" *ngFor='let paragraph of information.descriptionParagraphs; let i = index;' class='paragraph-container'>
+            <p>{{information.descriptionParagraphs[i]}}</p>
+            <button (click)='editParagraph(i)'>Edit</button>
+            <button (click)='deleteParagraph(i)'>Delete</button>
+            <div *ngIf='showEditParagraphFields[i]'>
+                <textarea name="paragraphText_{{i}}" #paragraphInput cols="30" rows="4">{{paragraph}}</textarea>
+                <button (click)='saveParagraph(i, paragraphInput.value)'>Save</button>
+            </div>
+
+        </div>
+        <button md-button (click)='addParagraph()'>Add More Paragraph</button>
+    </div>
+    <div>
+        <h3>Owners' Name</h3>
+
+        <div class="full-width" *ngFor='let owner of information.owners; let i = index;' class='paragraph-container'>
+            <div><span>{{i + 1}}.</span><span>{{information.owners[i]}}</span></div>
+            <button (click)='editOwner(i)'>Edit</button>
+            <button (click)='deleteOwner(i)'>Delete</button>
+            <div *ngIf='showEditOwnerFields[i]'>
+                <textarea name="ownerText_{{i}}" #ownerInput cols="30" rows="1">{{owner}}</textarea>
+                <button (click)='saveOwner(i, ownerInput.value)'>Save</button>
+            </div>
+
+        </div>
+        <button md-button (click)='addOwner()'>Add More Owner</button>
+    </div>
+
+<!--address fields goes here-->
+    <h3>Address</h3>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Address 1" [(ngModel)] = 'information.address.line1' name='address_line1'>
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Address 2" [(ngModel)] = 'information.address.line2' name='address_line1'>
+    </md-input-container>
+    <table class="full-width" cellspacing="0">
+        <tr>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput placeholder="City" value="Unjha" name='address_city' [(ngModel)] = 'information.address.city'>
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput placeholder="State" value="Gujarat" name='address_state' [(ngModel)] = 'information.address.state'>
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput #postalCode maxlength="6" placeholder="Postal Code" value="384170" name='address_pincode' [(ngModel)]  = 'information.address.pincode'>
+                    <md-hint align="end">{{postalCode.value.length}} / 6</md-hint>
+                </md-input-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-input-container class="full-width">
+                    <input mdInput type="number" placeholder="Contact Phone 1" [(ngModel)] = 'information.phone1' name='phone1'>
+                </md-input-container>
+                <md-input-container class="full-width">
+                    <input mdInput type="number" placeholder="Contact Phone 2" [(ngModel)] = 'information.phone2' name='phone2'>
+                </md-input-container>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<button md-button (click) = "updateFields()">Update The Fields</button>

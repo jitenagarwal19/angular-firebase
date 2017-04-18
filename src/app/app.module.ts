@@ -26,6 +26,7 @@ import { ImageComponent } from './components/image-component/image.component';
 import {ItemDetailsComponent} from './components/item-detail/item-detail.component';
 import {ProductAdditionComponent} from './components/product-addition/product-addition.component';
 import {ProductSelectionComponent} from './components/product-selection/product-selection.component';
+import {InfoFieldComponent} from './components/info-field-form/info-field-form.component';
 
 
 
@@ -77,7 +78,8 @@ export const firebaseConfig = {
     PageNotFoundComponent,
     ItemDetailsComponent,
     ProductAdditionComponent,
-    ProductSelectionComponent
+    ProductSelectionComponent,
+    InfoFieldComponent
   ],
   imports: [
     BrowserModule,

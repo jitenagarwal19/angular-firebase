@@ -9,7 +9,7 @@ export class FirebaseItemService {
     constructor(private af:AngularFire) { }
     private initList() {
         if (!this.items) {
-            this.items = this.af.database.list('/items');
+            this.items = this.af.database.list('/items1');
         }
     }
     getList() {

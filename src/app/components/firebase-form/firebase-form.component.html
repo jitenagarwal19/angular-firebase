@@ -1,10 +1,14 @@
 <div class="container">
+    <div style='border:1px solid red'>
+        <h3>General Info</h3>
+        <info-fields (formInformationUpdated) = 'componentFieldUpdate($event)'></info-fields>
+    </div>
     <form>
         <image-upload [folder]="folderName" (imageUploaded)='componentFieldUpdate($event)'></image-upload>
         <hr>
         <h3>Product Selection</h3>
         <product-selection (productSelectionUpdated)='componentFieldUpdate($event)'></product-selection>
-        <button (click)="addFields()">Add Entry</button>
+        <button md-button (click)="addFields()">Add Entry To Firebase</button>
     </form>
     <div *ngIf="invalidMessages && invalidMessages.length" class="invalid-message-container">
         <ul>
@@ -14,6 +18,9 @@
         </ul>
     </div>
 
+    <br>
+    <br>
+    
     <br>
     <br>
     <div style='border:1px solid red'>
