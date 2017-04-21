@@ -1,13 +1,13 @@
 
 <md-card >
-    <firebase-image [imageKey] = "item.image" [folderName] = 'folderName'></firebase-image>
+    <firebase-image [imageKey] = "item.images[0]" [folderName] = 'folderName'></firebase-image>
     <md-card-content>
-        <h2>{{item.name}}</h2>
-        <h3>{{item.address}}</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+        <h2>{{item.info.firmName}}</h2>
+        <h3>{{item.info.address.line1}}</h3>
+        <p>{{item.info.descriptionParagraphs[0]}}</p>
     </md-card-content>
     <div class="md-actions" layouts="row" layout-align="end center">
-        <button md-button>Detials</button>
-        <button md-button>Contact</button>
+        <button md-button (click) = 'goToDetails()'>Details</button>
+        <button md-button (click) = 'openContactDialog()'>Contact</button>
     </div>
 </md-card>

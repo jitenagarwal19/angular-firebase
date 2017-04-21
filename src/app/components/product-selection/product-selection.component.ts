@@ -23,7 +23,7 @@ export class ProductSelectionComponent implements OnInit, OnChanges {
 
     }
     private onComponentUpdate() {
-        this.componentModel = { isValid: this.isComponentValid(), invalidMessage: 'Please select Products', formModel: this.selectedProducts, item:'product-selection' };
+        this.componentModel = { isValid: this.isComponentValid(), invalidMessage: 'Please select Products', formModel: this.selectedProducts, item:'products' };
         this.productSelectionUpdated.emit(this.componentModel);
     }
     ngOnChanges() {

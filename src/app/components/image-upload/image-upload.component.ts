@@ -37,8 +37,8 @@ export class ImageUpload {
         let formComponent: FormComponentModel = {
             isValid: this.isComponentValid(),
             invalidMessage: 'Please Upload Image',
-            formModel: this.uploadedImages,
-            item: 'image-upload'
+            formModel: this.uploadedImages.map(imageObj=>{return imageObj.key;}),
+            item: 'images'
         };
         this.imageUploaded.emit(formComponent);
     }

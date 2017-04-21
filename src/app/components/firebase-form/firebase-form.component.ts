@@ -18,11 +18,14 @@ export class FirebaseFormComponent implements OnInit {
      addFields() {
          if (this.isValid()) {
              console.log('yes everything is correct');
+             for (let key in this.componentModels) {
+                 this.componentModels[key] = this.componentModels[key].formModel;
+             }
              this.firebaseItemService.pushItemInList(this.componentModels);
          }
      }
     ngOnInit() { 
-            
+    
     }
    
     private isValid():boolean {

@@ -8,7 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import {MaterialModule} from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {SwiperModule} from 'angular2-useful-swiper'
 //services
 import { UtilityService } from './services/utilities.service';
 import { FirebaseItemService } from './services/firebase-item.service';
@@ -27,7 +27,7 @@ import {ItemDetailsComponent} from './components/item-detail/item-detail.compone
 import {ProductAdditionComponent} from './components/product-addition/product-addition.component';
 import {ProductSelectionComponent} from './components/product-selection/product-selection.component';
 import {InfoFieldComponent} from './components/info-field-form/info-field-form.component';
-
+import {TraderDetailComponent} from './components/trader-detail-page/trader-detail-page.component'
 
 
 
@@ -42,8 +42,12 @@ const appRoutes: Routes = [
     component:ItemList
   },
   {
+    path:'trader/:short_url',
+    component:TraderDetailComponent
+  },
+  {
     path:'',
-    redirectTo:'/form',
+    redirectTo:'/list',
     pathMatch:'full'
     
   },
@@ -79,16 +83,19 @@ export const firebaseConfig = {
     ItemDetailsComponent,
     ProductAdditionComponent,
     ProductSelectionComponent,
-    InfoFieldComponent
+    InfoFieldComponent,
+    TraderDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    SwiperModule,
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    RouterModule.forRoot(appRoutes),  
+    BrowserAnimationsModule,
+    
   ],
   providers: [FirebaseItemService, ImageManagementService, UtilityService, FirebaseProductService],
   bootstrap: [AppComponent]

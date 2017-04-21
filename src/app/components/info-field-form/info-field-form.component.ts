@@ -18,17 +18,18 @@ export class InfoFieldComponent implements OnInit {
         this.information = {};
         this.showEditParagraphFields = {};
         this.showEditOwnerFields = {};
-        this.information.descriptionParagraphs = [];
-        this.information.owners = [];
+        this.information.descriptionParagraphs = ['Some Shit about Firm'];
+        this.information.owners = ['Hon. Chuni Seth'];
         this.information.address = {};
-        this.information.address.line1 = '';
+        this.information.address.line1 = 'Uppar Mala';
+        this.information.address.line2 = 'Patli Gali';
         this.information.address.state = 'Gujarat';
         this.information.address.pincode = '384170';
         this.information.address.city = 'Unjha';
-        this.information.firmName = '';
-        this.information.unique_url = '';
-        this.information.phone1 = '';
-        this.information.phone2 = '';
+        this.information.firmName = 'Chuni Lal';
+        this.information.unique_url = 'chuni_lal';
+        this.information.phone1 = '2342224';
+        this.information.phone2 = '2223443334';
 
     }
     addParagraph() {
@@ -64,6 +65,7 @@ export class InfoFieldComponent implements OnInit {
     }
 
     ngOnInit() { 
+        this.onComponentUpdate();
     }
     
     isComponentValid():boolean {
@@ -105,7 +107,7 @@ export class InfoFieldComponent implements OnInit {
             isValid : this.isComponentValid(),
             invalidMessage:this.invalidMessage,
             formModel:this.information,
-            item:'info-fields'
+            item:'info'
         }
         this.formInformationUpdated.emit(formComponent);
 

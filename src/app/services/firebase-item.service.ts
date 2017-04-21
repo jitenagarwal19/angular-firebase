@@ -4,12 +4,15 @@ import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'ang
 @Injectable()
 export class FirebaseItemService {
     private items:FirebaseListObservable<any>;
-    
+    private rootItemURL:string = '/items1'
 
-    constructor(private af:AngularFire) { }
+
+    constructor(private af:AngularFire) { 
+        
+    }
     private initList() {
         if (!this.items) {
-            this.items = this.af.database.list('/items1');
+            this.items = this.af.database.list(this.rootItemURL);
         }
     }
     getList() {
@@ -18,16 +21,20 @@ export class FirebaseItemService {
 
     }
     pushItemInList(item) {
-        this.initList();
-        if (!item)
-            return;
-        return this.items.push(item);
+        // this.initList();
+        // if (!item)
+        //     return;
+        // return this.items.push(item);
+
+        let path:string = `${this.rootItemURL}/${item.info.unique_url}`;
+        this.af.database.object(path).update(item);
     }
     getItemAsObservable(itemId) {
-        return this.af.database.object(`/items/${itemId}`); 
+        return this.af.database.object(`${this.rootItemURL}/${itemId}`); 
     }
     getItemAsObject(itemId:string,successCallback:(n:any)=>void, failureCallback:(errorMessage:string)=>void) {
-        this.af.database.object(`/items/${itemId}`).subscribe(snapshot=>{
+        let that = this;
+        this.af.database.object(`${that.rootItemURL}/${itemId}`).subscribe(snapshot=>{
             if (snapshot.$exists()) {
                 successCallback(snapshot);
             } else {

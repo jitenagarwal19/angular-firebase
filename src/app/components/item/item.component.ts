@@ -8,9 +8,16 @@ import {FirebaseObjectObservable} from 'angularfire2';
 export class ItemComponent {
     @Input() item:any;
     ngOnInit() {
-        
+        console.log('item here ' + this.item);
     }
     ngOnChanges(SimpleChanges) {
+    }
+    goToDetails() {
+        
+
+    }
+    openContactDialog() {
+
     }
 
 }

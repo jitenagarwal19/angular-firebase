@@ -39,4 +39,6 @@
     position:absolute;
 
 }
-.previe
+.preview-image .image-status-text {
+    margin-bottom: 20px;
+}
